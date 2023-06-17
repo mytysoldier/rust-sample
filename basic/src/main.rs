@@ -1,8 +1,11 @@
 fn main() {
-    let x = None;
-    let v = match x {
-        Some(i) => i,
-        None => -1,
+    let x = Some(10);
+    match x {
+        Some(i) => println!("i is {}", i),
+        _ => (),
     };
-    println!("v is {}", v);
+
+    if let Some(i) = x {
+        println!("i is {}", i);
+    }
 }
