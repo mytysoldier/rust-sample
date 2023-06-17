@@ -1,7 +1,7 @@
 fn main() {
-    let mut s = String::new();
-    s.push_str("hello ");
-    s.push_str("rust ");
-    s.push_str("world.");
+    let hello = "HELLO";
+    let rust = "RUST";
+    let world = "WORLD.";
+    let s = format!("{} {} {}", hello, rust, world);
     println!("s is {}", s);
 }
