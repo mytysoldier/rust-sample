@@ -1,7 +1,14 @@
 fn main() {
-    let hello = "HELLO";
-    let rust = "RUST";
-    let world = "WORLD.";
-    let s = format!("{} {} {}", hello, rust, world);
-    println!("s is {}", s);
+    let mut v = vec![1, 2, 3, 4, 5];
+    vec_change(&mut v);
+    for i in v {
+        print!("{} ", i);
+    }
+    println!("");
+}
+
+fn vec_change(v: &mut Vec<i32>) {
+    for i in v {
+        *i = *i * 10
+    }
 }
