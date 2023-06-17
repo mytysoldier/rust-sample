@@ -1,14 +1,16 @@
 fn main() {
-    let mut v = vec![1, 2, 3, 4, 5];
-    vec_change(&mut v);
-    for i in v {
-        print!("{} ", i);
-    }
-    println!("");
+    let lang = LANG::CHINESE;
+    let m = match lang {
+        LANG::JAPANESE => "日本語",
+        _ => "any",
+    };
+    println!("lang is {}", m);
 }
 
-fn vec_change(v: &mut Vec<i32>) {
-    for i in v {
-        *i = *i * 10
-    }
+#[derive(Debug)]
+enum LANG {
+    JAPANESE = 81,
+    ENGLISH = 82,
+    CHINESE = 83,
+    FRANCH = 84,
 }
