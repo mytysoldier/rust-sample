@@ -12,5 +12,6 @@ fn main() {
 }
 
 fn half_number(s: &str) -> Result<i32, ParseIntError> {
-    s.parse::<i32>().map(|n| n / 2)
+    let n = s.parse::<i32>()?;
+    Ok(n / 2)
 }
