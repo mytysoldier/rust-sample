@@ -1,11 +1,7 @@
 fn main() {
-    let x = Some(10);
-    match x {
-        Some(i) => println!("i is {}", i),
-        _ => (),
-    };
-
-    if let Some(i) = x {
-        println!("i is {}", i);
-    }
+    let mut v = vec![1, 2, 3, 4, 5];
+    v.insert(0, 10);
+    println!("v.first is {:?}", v.first());
+    v.insert(v.len(), 99);
+    println!("v.last is {:?}", v.last());
 }
