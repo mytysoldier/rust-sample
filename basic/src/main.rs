@@ -1,36 +1,16 @@
-static mut PERSON_ID: i32 = 0;
+use std::num::ParseIntError;
+
 fn main() {
-    let mut people = Vec::<Person>::new();
-    people.push(Person::new("masu", 10, "Tokyo"));
-    people.push(Person::new("yama", 20, "Tokyo"));
-    people.push(Person::new("sato", 30, "Tokyo"));
-    for p in &people {
-        println!("{:#?}", p);
+    match half_number("100") {
+        Ok(n) => println!("OK: {}", n),
+        Err(err) => println!("Error: {:?}", err),
+    }
+    match half_number("xxx") {
+        Ok(n) => println!("OK: {}", n),
+        Err(err) => println!("Error: {:?}", err),
     }
 }
 
-#[derive(Debug)]
-struct Person {
-    id: i32,
-    name: String,
-    age: i32,
-    addr: String,
-}
-
-impl Person {
-    fn new(name: &str, age: i32, addr: &str) -> Person {
-        let id = unsafe {
-            PERSON_ID += 1;
-            PERSON_ID
-        };
-        Person {
-            id: id,
-            name: name.to_string(),
-            age: age,
-            addr: addr.to_string(),
-        }
-    }
-    fn add_age(&mut self, n: i32) {
-        self.age += n;
-    }
+fn half_number(s: &str) -> Result<i32, ParseIntError> {
+    s.parse::<i32>().map(|n| n / 2)
 }
