@@ -32,6 +32,24 @@ impl CalcArea for Circle {
     }
 }
 
+trait ExprString {
+    fn expr_str(&self) -> String {
+        "幅 × 高さ = ".to_string()
+    }
+}
+
+impl ExprString for Rectangle {}
+impl ExprString for Triangle {
+    fn expr_str(&self) -> String {
+        "底辺 × 高さ ÷ 2 = ".to_string()
+    }
+}
+impl ExprString for Circle {
+    fn expr_str(&self) -> String {
+        "π × 半径 × 半径 = ".to_string()
+    }
+}
+
 fn main() {
     let rect = Rectangle {
         width: 10.0,
@@ -43,7 +61,7 @@ fn main() {
     };
     let cir = Circle { radius: 10.0 };
 
-    println!("rect area is {}", rect.calc_area());
-    println!("tri area is {}", tri.calc_area());
-    println!("cir area is {}", cir.calc_area());
+    println!("rect {} {}", rect.expr_str(), rect.calc_area());
+    println!("tri {} {}", tri.expr_str(), tri.calc_area());
+    println!("cir {} {}", cir.expr_str(), cir.calc_area());
 }
