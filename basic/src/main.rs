@@ -1,13 +1,8 @@
-use std::{
-    fs::{self, File},
-    io::{BufRead, BufReader, Read},
-};
+use std::fs::File;
+use std::io::Write;
 
-fn main() -> std::io::Result<()> {
+fn main() {
     let path = "sample.txt";
-    let file = File::open(path)?;
-    for line in BufReader::new(file).lines() {
-        println!("line is {}", line?);
-    }
-    Ok(())
+    let mut file = File::create(path).expect("file not found.");
+    writeln!(file, "hello rust world.").expect("cannot write.");
 }
