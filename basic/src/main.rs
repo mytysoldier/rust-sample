@@ -1,24 +1,10 @@
-#[derive(Debug)]
-struct Person {
-    name: String,
-    age: i32,
-}
-
-fn new_person(name: &str, age: i32) -> Person {
-    let p = Person {
-        name: String::from(name),
-        age: age,
-    };
-    p
-}
+use rand::{random, thread_rng, Rng};
 
 fn main() {
-    let mut a = new_person("masu", 30);
-    println!("a is {:?}", a);
-    let mut x = &mut a;
-    println!("x is {:?}", x);
-    x.age = 0;
-    x.name = String::from("kato");
-    println!("x is {:?}", x);
-    println!("a is {:?}", a);
+    let x: i32 = random();
+    println!("x is {}", x);
+
+    let mut rng = thread_rng();
+    let y: i32 = rng.gen_range(0..=10);
+    println!("y is {}", y);
 }
