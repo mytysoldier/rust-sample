@@ -1,10 +1,9 @@
-use rand::{random, thread_rng, Rng};
+use std::fs::*;
 
 fn main() {
-    let x: i32 = random();
-    println!("x is {}", x);
-
-    let mut rng = thread_rng();
-    let y: i32 = rng.gen_range(0..=10);
-    println!("y is {}", y);
+    let path = "sample.txt";
+    println!("read all lines.");
+    if let Ok(data) = read_to_string(path) {
+        println!("data is {}", data);
+    }
 }
