@@ -15,11 +15,15 @@ fn add_age(a: &mut Person) {
 }
 
 fn main() {
-    let mut a = Person {
+    let a = Person {
         name: "masu",
         age: 10,
     };
-    println!("a is {:?}", a);
-    add_age(&mut a);
-    println!("a is {:?}", a);
+    let mut x = a;
+    println!("x is {:?}", x);
+    x.age += 1;
+    println!("x is {:?}", x);
+    add_age(&mut x);
+    // a.age += 1;
+    // println!("a is {:?}", a);
 }
