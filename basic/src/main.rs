@@ -1,13 +1,15 @@
 use std::{
     fs::{self, File},
-    io::Read,
+    io::{BufRead, BufReader, Read},
 };
 
 fn main() {
     let path = "sample.txt";
-    println!("read all lines by buffer.");
-    let mut file = File::open(path).expect("file not found.");
-    let mut data = String::new();
-    file.read_to_string(&mut data).expect("read error");
-    println!("data is {}", data);
+    println!("read every one line.");
+    let file = File::open(path).expect("file not found.");
+    for line in BufReader::new(file).lines() {
+        if let Ok(l) = line {
+            println!("line is {}", l);
+        }
+    }
 }
