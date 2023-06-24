@@ -3,13 +3,11 @@ use std::{
     io::{BufRead, BufReader, Read},
 };
 
-fn main() {
+fn main() -> std::io::Result<()> {
     let path = "sample.txt";
-    println!("read every one line.");
-    let file = File::open(path).expect("file not found.");
+    let file = File::open(path)?;
     for line in BufReader::new(file).lines() {
-        if let Ok(l) = line {
-            println!("line is {}", l);
-        }
+        println!("line is {}", line?);
     }
+    Ok(())
 }
