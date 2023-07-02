@@ -1,17 +1,7 @@
-use reqwest::StatusCode;
-
-#[tokio::main]
-async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let url = "https://openccpm.com/redmine/projects.json";
-    println!("call {}", url);
-    let res = reqwest::get(url).await?;
-    let body = res.text().await?;
-    let json: serde_json::Value = serde_json::from_str(&body)?;
-    let projects = json["projects"].as_array().unwrap();
-    for item in projects {
-        let identifier = &item["identifier"].as_str().unwrap();
-        let name = &item["name"].as_str().unwrap();
-        println!("tag: {} {}", identifier, name);
-    }
-    Ok(())
+fn main() {
+    let a = [1, 2, 3, 4, 5];
+    let b = a.iter().find(|&&x| x == 3);
+    let c = a.iter().find(|&&x| x > 10);
+    println!("b is {:?}", b);
+    println!("c is {:?}", c);
 }
