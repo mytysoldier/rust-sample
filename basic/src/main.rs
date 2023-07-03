@@ -1,26 +1,20 @@
-use std::{
-    io::{Error, Read},
-    thread,
-    time::Duration,
-};
+use std::{io::Error, thread, time::Duration};
 
-fn task() {
+async fn foo(id: i32) {
     for i in 0..3 {
-        println!("thread #1 count {}.", i);
+        println!("thread #{} count {}.", id, i);
         thread::sleep(Duration::from_millis(1000));
     }
 }
 
-fn main() -> Result<(), Error> {
-    // let task = || {
-    //     for i in 0..3 {
-    //         println!("thread #1 count {}.", i);
-    //         thread::sleep(Duration::from_millis(1000));
-    //     }
-    // };
-    let handle = thread::spawn(task);
-    println!("please wait.");
-    handle.join().unwrap();
-    println!("program end.");
-    Ok(())
+async fn sub() {
+    foo(10).await;
+    foo(20).await;
+    foo(30).await;
+}
+
+fn main() {
+    println!("process start");
+    futures::executor::block_on(sub());
+    println!("process end");
 }
