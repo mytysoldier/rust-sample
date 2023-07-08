@@ -1,20 +1,24 @@
-use std::{io::Error, thread, time::Duration};
+use std::{io::Read, thread, time::Duration};
 
-async fn foo(id: i32) {
-    for i in 0..3 {
-        println!("thread #{} count {}.", id, i);
-        thread::sleep(Duration::from_millis(1000));
-    }
-}
-
-async fn sub() {
-    foo(10).await;
-    foo(20).await;
-    foo(30).await;
-}
+use futures::executor::ThreadPool;
 
 fn main() {
-    println!("process start");
-    futures::executor::block_on(sub());
-    println!("process end");
+    let pool = ThreadPool::new().unwrap();
+    let task = async {
+        for j in 1..6 {
+            let id = j * 10;
+            pool.spawn_ok(async move {
+                for i in 0..10 {
+                    println!("thread #{} count {}.", id, i);
+                    thread::sleep(Duration::from_millis(1000));
+                }
+            });
+            thread::sleep(Duration::from_millis(500));
+        }
+    };
+    println!("program start.");
+    futures::executor::block_on(task);
+    println!("press any key.");
+    std::io::stdin().read(&mut [0]);
+    println!("program end.");
 }
