@@ -4,6 +4,9 @@
         "editor.formatOnSave": true,
     },
     "rust-analyzer.linkedProjects": [
-        "./basic/projects/guessing_game/Cargo.toml"
+        "./basic/projects/guessing_game/Cargo.toml",
+        "./basic/projects/variables/Cargo.toml",
+        "./basic/projects/branches/Cargo.toml",
+        "./basic/projects/loops/Cargo.toml"
     ]
 }
