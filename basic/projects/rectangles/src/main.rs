@@ -1,14 +1,24 @@
-use std::collections::HashMap;
+use std::{
+    fs::File,
+    io::{self, Read},
+};
 
 fn main() {
-    let text = "hello world wonderful world";
+    let f = File::open("hello.txt").expect("Failed");
+}
 
-    let mut map = HashMap::new();
+fn read_username_from_file() -> Result<String, io::Error> {
+    let f = File::open("hello.txt");
 
-    for word in text.split_whitespace() {
-        let count = map.entry(word).or_insert(0);
-        *count += 1;
+    let mut f = match f {
+        Ok(file) => file,
+        Err(e) => return Err(e),
+    };
+
+    let mut s = String::new();
+
+    match f.read_to_string(&mut s) {
+        Ok(_) => Ok(s),
+        Err(e) => Err(e),
     }
-
-    println!("{:?}", map);
 }
