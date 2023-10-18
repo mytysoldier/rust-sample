@@ -1,35 +1,46 @@
-use std::{
-    fs::File,
-    io::{self, Read},
-};
-
 fn main() {
-    let f = read_username_from_file();
-    match f {
-        Ok(_) => (),
-        Err(e) => panic!("error occured. {:?}", e),
-    }
+    let both_integer = Point { x: 5, y: 10 };
+    let both_float = Point { x: 1.0, y: 4.0 };
+    let integer_and_float = Point { x: 5, y: 4.0 };
 }
 
-fn read_username_from_file() -> Result<String, io::Error> {
-    let mut s = String::new();
+fn largest_i32(list: &[i32]) -> i32 {
+    let mut largest = list[0];
 
-    File::open("hello.txt")?.read_to_string(&mut s)?;
-    // let mut f = File::open("hello.txt")?;
-    // let mut s = String::new();
-    // f.read_to_string(&mut s)?;
-    Ok(s)
-    // let f = File::open("hello.txt");
+    for &item in list.iter() {
+        if item > largest {
+            largest = item;
+        }
+    }
 
-    // let mut f = match f {
-    //     Ok(file) => file,
-    //     Err(e) => return Err(e),
-    // };
+    largest
+}
 
-    // let mut s = String::new();
+fn largest_char(list: &[char]) -> char {
+    let mut largest = list[0];
 
-    // match f.read_to_string(&mut s) {
-    //     Ok(_) => Ok(s),
-    //     Err(e) => Err(e),
-    // }
+    for &item in list.iter() {
+        if item > largest {
+            largest = item;
+        }
+    }
+
+    largest
+}
+
+fn largest<T>(list: &[T]) -> T {
+    let mut largest = list[0];
+
+    for &item in list.iter() {
+        if item > largest {
+            largest = item;
+        }
+    }
+
+    largest
+}
+
+struct Point<T, U> {
+    x: T,
+    y: U,
 }
