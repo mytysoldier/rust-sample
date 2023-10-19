@@ -1,46 +1,45 @@
 fn main() {
-    let both_integer = Point { x: 5, y: 10 };
-    let both_float = Point { x: 1.0, y: 4.0 };
-    let integer_and_float = Point { x: 5, y: 4.0 };
+    let tweet = Tweet {
+        username: String::from("horse_ebooks"),
+        content: String::from("of course, as you probably already know, people"),
+        reply: false,
+        retweet: false,
+    };
+
+    println!("1 new tweet: {}", tweet.summarize());
 }
 
-fn largest_i32(list: &[i32]) -> i32 {
-    let mut largest = list[0];
+pub struct NewsArticle {
+    pub headline: String,
+    pub location: String,
+    pub author: String,
+    pub content: String,
+}
 
-    for &item in list.iter() {
-        if item > largest {
-            largest = item;
-        }
+// impl Summary for NewsArticle {}
+
+pub struct Tweet {
+    pub username: String,
+    pub content: String,
+    pub reply: bool,
+    pub retweet: bool,
+}
+
+impl Summary for Tweet {
+    // fn summarize(&self) -> String {
+    //     format!("{}: {}", self.username, self.content)
+    // }
+
+    fn summarize_author(&self) -> String {
+        format!("@{}", self.username)
     }
-
-    largest
 }
 
-fn largest_char(list: &[char]) -> char {
-    let mut largest = list[0];
+pub trait Summary {
+    fn summarize_author(&self) -> String;
 
-    for &item in list.iter() {
-        if item > largest {
-            largest = item;
-        }
+    fn summarize(&self) -> String {
+        // "（{}さんの文章をもっと読む）"
+        format!("(Read more from {}...)", self.summarize_author())
     }
-
-    largest
-}
-
-fn largest<T>(list: &[T]) -> T {
-    let mut largest = list[0];
-
-    for &item in list.iter() {
-        if item > largest {
-            largest = item;
-        }
-    }
-
-    largest
-}
-
-struct Point<T, U> {
-    x: T,
-    y: U,
 }
