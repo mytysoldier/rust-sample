@@ -1,45 +1,23 @@
+fn largest<T: PartialOrd>(list: &[T]) -> &T {
+    let mut largest = &list[0];
+
+    for item in list.iter() {
+        if item > largest {
+            largest = item;
+        }
+    }
+
+    largest
+}
+
 fn main() {
-    let tweet = Tweet {
-        username: String::from("horse_ebooks"),
-        content: String::from("of course, as you probably already know, people"),
-        reply: false,
-        retweet: false,
-    };
+    let number_list = vec![34, 50, 25, 100, 65];
 
-    println!("1 new tweet: {}", tweet.summarize());
-}
+    let result = largest(&number_list);
+    println!("The largest number is {}", result);
 
-pub struct NewsArticle {
-    pub headline: String,
-    pub location: String,
-    pub author: String,
-    pub content: String,
-}
+    let char_list = vec!['y', 'm', 'a', 'q'];
 
-// impl Summary for NewsArticle {}
-
-pub struct Tweet {
-    pub username: String,
-    pub content: String,
-    pub reply: bool,
-    pub retweet: bool,
-}
-
-impl Summary for Tweet {
-    // fn summarize(&self) -> String {
-    //     format!("{}: {}", self.username, self.content)
-    // }
-
-    fn summarize_author(&self) -> String {
-        format!("@{}", self.username)
-    }
-}
-
-pub trait Summary {
-    fn summarize_author(&self) -> String;
-
-    fn summarize(&self) -> String {
-        // "（{}さんの文章をもっと読む）"
-        format!("(Read more from {}...)", self.summarize_author())
-    }
+    let result = largest(&char_list);
+    println!("The largest char is {}", result);
 }
