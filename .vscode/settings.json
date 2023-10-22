@@ -9,6 +9,7 @@
         "./basic/projects/branches/Cargo.toml",
         "./basic/projects/loops/Cargo.toml",
         "./basic/projects/rectangles/Cargo.toml",
-        "./basic/projects/restaurant/Cargo.toml"
+        "./basic/projects/restaurant/Cargo.toml",
+        "./basic/projects/minigrep/Cargo.toml"
     ]
 }
