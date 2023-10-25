@@ -1,5 +1,5 @@
+use std::env;
 use std::io::prelude::*;
-use std::{env, vec};
 use std::{error::Error, fs::File};
 
 pub struct Config {
