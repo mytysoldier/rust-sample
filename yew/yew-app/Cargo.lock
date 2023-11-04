@@ -1124,6 +1124,9 @@ dependencies = [
 name = "yew-app"
 version = "0.1.0"
 dependencies = [
+ "gloo-net 0.4.0",
+ "serde",
+ "wasm-bindgen-futures",
  "yew",
 ]
 
