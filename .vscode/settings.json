@@ -11,6 +11,7 @@
         "./basic/projects/rectangles/Cargo.toml",
         "./basic/projects/restaurant/Cargo.toml",
         "./basic/projects/minigrep/Cargo.toml",
-        "./basic/projects/closure_iterator/Cargo.toml"
+        "./basic/projects/closure_iterator/Cargo.toml",
+        "./yew/yew-app/Cargo.toml",
     ]
 }
